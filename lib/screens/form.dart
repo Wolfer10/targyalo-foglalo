@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:targyalo_foglalo/components/dropdown.dart';
 import 'package:intl/intl.dart';
+import 'package:targyalo_foglalo/dao/MeetingroomData.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class SearchForm extends StatefulWidget {
   const SearchForm({Key? key}) : super(key: key);
@@ -118,7 +122,7 @@ class MyCustomFormState extends State<SearchForm> {
             children: [
               DropDownList(
                   items: spaceTypes,
-                  titleText: "Space type required",
+                  titleText: AppLocalizations.of(context)!.typeReuired,
                   setCurrentState: (String value) => selectedSpaceType = value),
               InkWell(
                 onTap: () {
@@ -126,7 +130,7 @@ class MyCustomFormState extends State<SearchForm> {
                 },
                 child: IgnorePointer(
                   child: TextFormField(
-                    decoration: const InputDecoration(labelText: "Date"),
+                    decoration: InputDecoration(labelText: AppLocalizations.of(context)!.date),
                     maxLength: 10,
                     controller: TextEditingController()
                       ..text = selectedDate,
@@ -135,30 +139,33 @@ class MyCustomFormState extends State<SearchForm> {
               ),
               DropDownList(
                   items: times,
-                  titleText: "Time from",
+                  titleText: AppLocalizations.of(context)!.from,
                   setCurrentState: (String value) => timeFrom = value),
               DropDownList(
                   items: times,
-                  titleText: "Time until",
+                  titleText: AppLocalizations.of(context)!.until,
                   setCurrentState: (String value) => timeUntil = value),
 
               TextFormField(
-                  decoration: const InputDecoration(labelText: "Number of people"),
+                  decoration: InputDecoration(labelText: AppLocalizations.of(context)!.numberOfPpl),
                   keyboardType: TextInputType.number,
                   maxLength: 2,
+                  controller: TextEditingController(),
                   inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))],
               ), TextFormField(
-                  decoration: const InputDecoration(labelText: "Location"),
+                  decoration: InputDecoration(labelText: AppLocalizations.of(context)!.location),
                   maxLength: 20,
               ),
               ElevatedButton(
                   onPressed: () {
                     if (_dropdownFormKey.currentState!.validate()) {
-                      print(selectedSpaceType);
-                      print(selectedLikedCat);
+                      // print(selectedSpaceType);
+                      // print(selectedLikedCat);
+                      Navigator.pushNamed(context, '/meetingRooms');
+                      Provider.of<MeetingroomData>(context, listen: false).getMeetingRooms();
                     }
                   },
-                  child: const Text("Submit"))
+                  child:  Text(AppLocalizations.of(context)!.submit))
             ],
           ),
         ));
