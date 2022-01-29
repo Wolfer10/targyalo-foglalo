@@ -1,0 +1,21 @@
+{
+    "language": "Magyar",
+    "search": "Keresés",
+    "description": "A munkatereket tömörítő globális hálózatunknak köszönhetően ott dolgozhat, ahol csak szeretne, és mindenhol hatékony, professzionális munkakörnyezet várja. Alakítsa ki a vállalkozásának most és a jövőben is megfelelő munkahelyszínt, és növekedjen globális üzleti közösségünk tagjaként.",
+    "meetingRooms": "Tárgyalótermek",
+    "bookNow": "FOGLALÁS",
+    "receptionOpen": "A recepció nyitva:",
+    "mondayToFriday": "Hétfőtől péntekig 8:00-17:00",
+    "typeReuired": "Az irodahelyiség típusának megadása kötelező",
+    "date": "Dátum",
+    "from": "Foglalás kezdete",
+    "until": "Foglalás vége",
+    "numberOfPpl": "Személyek száma",
+    "location": "Helyszín",
+    "giveTheCity": "Adja meg a várost",
+    "submit": "Keresés",
+    "select": "Kiválaszt",
+    "perMan": "adagonként és személyenként",
+    "aboutTheCentre": "Az Irodaházról"
+
+}

@@ -1,0 +1,91 @@
+{
+    "language": "English",
+    "@language":{
+        "description": "The current Language"
+    },
+
+    "search": "Search",
+    "@search":{
+            "description": "Search"
+    },
+
+    "description": "Our meeting rooms are in every major city in the world, so you can host wherever you need. Impress clients, hold memorable workshops, or deliver a winning pitch in our fully-serviced meeting spaces. Book on-demand by the hour, and our dedicated team will be on hand to ensure your meeting runs smoothly.",
+    "@description":{
+        "description": "descriptions"
+    },
+
+    "meetingRooms": "MeetingRooms",
+    "@meetingRooms":{
+         "description": "MeetingRooms"
+    },
+
+     "bookNow": "BOOK NOW",
+        "@bookNow":{
+             "description": "bookNow"
+     },
+
+    "typeReuired": "Space type required",
+    "@typeReuired":{
+         "description": "Space type required"
+    },
+
+    "date": "Date",
+    "@date":{
+       "description": "Date"
+    },
+
+    "from": "From",
+    "@from":{
+      "description": "From"
+    },
+
+    "until": "Until",
+    "@until":{
+       "description": "Until"
+    },
+
+    "numberOfPpl": "Number of people",
+    "@numberOfPpl":{
+        "description": "Number of people"
+    },
+
+    "location": "Location",
+    "@location":{
+      "description": "Location"
+    },
+
+    "giveTheCity": "City",
+    "@giveTheCity":{
+     "description": "City"
+    },
+
+    "submit": "Submit",
+    "@submit":{
+     "description": "Submit"
+    },
+
+    "select": "Select",
+    "@select":{
+      "description": "Select"
+    },
+
+    "perMan": "per person",
+    "@perMan":{
+     "description": "per person"
+    },
+
+    "aboutTheCentre": "ABOUT THIS CENTER",
+    "@aboutTheCentre":{
+      "description": "ABOUT THIS CENTER"
+    },
+
+    "receptionOpen": "The reception open",
+    "@receptionOpen":{
+      "description": "The reception open"
+    },
+
+    "mondayToFriday": "Monday - friday 8:00 AM - 5:00 PM",
+    "@mondayToFriday":{
+      "description": "Monday - friday 8:00 AM - 5:00 PM"
+    }
+}
