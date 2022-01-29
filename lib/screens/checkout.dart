@@ -5,6 +5,7 @@ import 'package:targyalo_foglalo/components/meetingRoomDetails.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import 'contacts/contact.dart';
+import 'document_picture.dart';
 
 
 class Checkout extends StatefulWidget {
@@ -17,6 +18,7 @@ class Checkout extends StatefulWidget {
 class _CheckoutState extends State<Checkout> {
 
   List<Contact> contacts = [];
+
 
   @override
   Widget build(BuildContext context) {
@@ -33,31 +35,36 @@ class _CheckoutState extends State<Checkout> {
         centerTitle: true,
         backgroundColor: const Color.fromARGB(255, 229, 37, 0),
       ),
-      body: Column(children: <Widget>[
-        const Text("Your selected room:"),
-        const Text("Meeting room: for x people"),
-        Row(
-          children: <Widget>[
-            const Text("2022/01/23"),
-            const Text("8:00 -> 9:30"),
-            Text("${meetingRoom.price}"),
-          ],
-        ),
-        const Divider(),
-        MeetingRoomDetails(meetingRoom: meetingRoom),
-        const Divider(),
-        ListView.builder(itemCount: contacts.length, shrinkWrap: true,
-            itemBuilder: (context, index) => _buildItem(context, index)),
-        ElevatedButton(onPressed: ()  => chooseContact(),
-          child: Text("Add Contact"),),
-        Column(children: [
-          const Text("Coffe & Tea"),
-          const Text("400Ft per serving"),
-          const Text("per person"),
-          //Checkbox(onChanged: (_) => price + 400, value: null,),
-          Text("$price")
-        ])
-      ]),
+      body: SingleChildScrollView(
+        child: Column(children: <Widget>[
+          const Text("Your selected room:"),
+          const Text("Meeting room: for x people"),
+          Row(
+            children: <Widget>[
+              const Text("2022/01/23"),
+              const Text("8:00 -> 9:30"),
+              Text("${meetingRoom.price}"),
+            ],
+          ),
+          const Divider(),
+          MeetingRoomDetails(meetingRoom: meetingRoom),
+          const Divider(),
+          ListView.builder(itemCount: contacts.length, shrinkWrap: true,
+              itemBuilder: (context, index) => _buildItem(context, index)),
+          ElevatedButton(onPressed: ()  => chooseContact(),
+            child: Text("Add Contact"),),
+
+         const DocumentPicture(),
+
+          Column(children: [
+            const Text("Coffe & Tea"),
+            const Text("400Ft per serving"),
+            const Text("per person"),
+            //Checkbox(onChanged: (_) => price + 400, value: null,),
+            Text("$price")
+          ])
+        ]),
+      ),
     );
   }
 

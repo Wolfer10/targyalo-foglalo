@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive/hive.dart';
@@ -30,15 +31,22 @@ Future<void> main() async {
   //box.clear();
   MEETING_ROOMS.forEach((meetingRoom) => box.add(meetingRoom));
 
+  final cameras = await availableCameras();
+  final camera = cameras.isNotEmpty ? cameras.first : null;
+
+
+
   /*var box2 = await Hive.openBox<Address>('AddressAdapter');
   box2.add(const Address(postalCode: "a", city: "b", street: "c"));
   print(box2.values);*/
 
-  final cameras = await availableCameras();
-  final camera = cameras.length > 0 ? cameras.first : null;
+  runApp(MultiProvider( providers: [
+      ListenableProvider(create: (context) => MeetingroomData()),
+      Provider.value(value: camera),
+    
 
-
-  runApp(ListenableProvider(create: (context) => MeetingroomData(), child: MyApp()));
+  ], child: MyApp())
+  );
 
 }
 
