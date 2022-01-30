@@ -149,7 +149,7 @@ class MyCustomFormState extends State<SearchForm> {
                       if (_dropdownFormKey.currentState!.validate()) {
                         // print(selectedSpaceType);
                         // print(selectedLikedCat);
-                        Navigator.pushNamed(context, '/meetingRooms');
+                        Navigator.pushNamed(context, '/meetingRooms', arguments: locationController.text);
                         Provider.of<MeetingroomData>(context, listen: false).getMeetingRooms();
                       }
                     },

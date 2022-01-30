@@ -18,4 +18,10 @@ class MeetingroomData extends ChangeNotifier{
     return _meetingrooms.length;
   }
 
+  void filterMeetingRooms(String location){
+    _meetingrooms =  _meetingrooms.where((element) => element.address.city.contains(location)).toList();
+  }
+
+
+
 }

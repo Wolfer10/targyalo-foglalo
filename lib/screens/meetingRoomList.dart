@@ -18,8 +18,13 @@ class MeetingRooms extends StatefulWidget {
 class _MeetingRoomsState extends State<MeetingRooms> {
   @override
   Widget build(BuildContext context) {
+
     return Consumer<MeetingroomData>(
         builder: (context, meetingRoomData, child) {
+          meetingRoomData.filterMeetingRooms(ModalRoute
+              .of(context)!
+              .settings
+              .arguments as String);
       return Scaffold(
         appBar: AppBar(
           title: Text(AppLocalizations.of(context)!.meetingRooms),
