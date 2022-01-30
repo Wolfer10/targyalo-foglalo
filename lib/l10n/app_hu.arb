@@ -16,6 +16,17 @@
     "submit": "Keresés",
     "select": "Kiválaszt",
     "perMan": "adagonként és személyenként",
-    "aboutTheCentre": "Az Irodaházról"
-
+    "aboutTheCentre": "Az Irodaházról",
+    "today": "Ma",
+    "coffeeAndTea": "Kávé és tea",
+    "selectedRoom": "A választott termed",
+    "forXPeople": "Tárgyaló x személyre",
+    "addContact": "Kontakt hozzáadása",
+    "checkout": "Véglegesítés",
+    "enterTheLocation": "Kérlek add meg a helyszínt",
+    "dayOffice": "Nappali iroda",
+    "meetingRoom": "Tárgyalóterem",
+    "dayCoWorking": "Nappali munkavégézéshez",
+    "documentPicture": "Kérlek adj meg egy igazolványt",
+    "documentPictureOther": "Másik igazolvány megadása"
 }

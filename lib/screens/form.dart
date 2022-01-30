@@ -20,46 +20,13 @@ class SearchForm extends StatefulWidget {
 class MyCustomFormState extends State<SearchForm> {
   String selectedSpaceType = "";
   String selectedLikedCat = "";
-  String selectedDate = "Today";
+  String selectedDate ="";
   String timeFrom = "";
   String timeUntil = "";
 
   late TextEditingController dateController = TextEditingController();
+  late TextEditingController locationController = TextEditingController();
 
-  List<Map> spaceTypes = [
-    {
-      "display": "-",
-      "value": "-",
-    },
-    {
-      "display": "Running",
-      "value": "Running",
-    },
-    {
-      "display": "Climbing",
-      "value": "Climbing",
-    },
-    {
-      "display": "Walking",
-      "value": "Walking",
-    },
-    {
-      "display": "Swimming",
-      "value": "Swimming",
-    },
-    {
-      "display": "Soccer Practice",
-      "value": "Soccer Practice",
-    },
-    {
-      "display": "Baseball Practice",
-      "value": "Baseball Practice",
-    },
-    {
-      "display": "Football Practice",
-      "value": "Football Practice",
-    }
-  ];
 
 
   List<Map> times = [
@@ -75,28 +42,19 @@ class MyCustomFormState extends State<SearchForm> {
     {"display": "10:30", "value": "10:30"},
     {"display": "11:00", "value": "11:00"},
     {"display": "11:30", "value": "11:30"},
+    {"display": "12:00", "value": "12:00"},
+    {"display": "12:30", "value": "12:30"},
+    {"display": "13:00", "value": "13:00"},
+    {"display": "13:30", "value": "13:30"},
+    {"display": "14:00", "value": "14:00"},
+    {"display": "14:30", "value": "14:30"},
+    {"display": "15:00", "value": "15:00"},
+    {"display": "15:30", "value": "15:30"},
+    {"display": "16:00", "value": "16:00"},
+    {"display": "16:30", "value": "16:30"},
+    {"display": "17:00", "value": "17:00"},
+    {"display": "17:30", "value": "17:30"},
   ];
-
-  /*static int todayHour = DateTime.now().hour;
-  static int todayMinute = DateTime.now().minute;
-
-  List<Map> createHourRange(DateTime dateTime) {
-    List<Map> hourRange = [{"display": "", "value": ""}];
-    int i = 8, j = 0;
-    if (dateTime == DateTime.now()) {
-      i = todayHour;
-    }
-    while (i <= 18) {
-      j = j >= 60 ? 0 : 30;
-      hourRange.add(hourAndMinuteToMap(i, j));
-      j += 30;
-    }
-    i += 1;
-    return hourRange;
-  }
-
-  Map hourAndMinuteToMap(int hour, int minute) =>
-      {"display": "$hour:$minute", "value": "$hour:$minute"};*/
 
   final _dropdownFormKey = GlobalKey<FormState>();
 
@@ -105,6 +63,7 @@ class MyCustomFormState extends State<SearchForm> {
     super.dispose();
     // Clean up the controller when the widget is removed from the widget tree.
     dateController.dispose();
+    locationController.dispose();
   }
 
   @override
@@ -114,67 +73,97 @@ class MyCustomFormState extends State<SearchForm> {
 
   @override
   Widget build(BuildContext context) {
+
+    List<Map> spaceTypes = [
+      {
+        "display": "-",
+        "value": "-",
+      },
+      {
+        "display": AppLocalizations.of(context)!.meetingRoom,
+        "value": AppLocalizations.of(context)!.meetingRoom,
+      },
+      {
+        "display": AppLocalizations.of(context)!.dayCoWorking,
+        "value": AppLocalizations.of(context)!.dayCoWorking,
+      },
+      {
+        "display": AppLocalizations.of(context)!.dayOffice,
+        "value": AppLocalizations.of(context)!.dayOffice,
+      },
+    ];
+
+
     return Form(
         key: _dropdownFormKey,
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              DropDownList(
-                  items: spaceTypes,
-                  titleText: AppLocalizations.of(context)!.typeReuired,
-                  setCurrentState: (String value) => selectedSpaceType = value),
-              InkWell(
-                onTap: () {
-                  _selectDate(); // Call Function that has showDatePicker()
-                },
-                child: IgnorePointer(
-                  child: TextFormField(
-                    decoration: InputDecoration(labelText: AppLocalizations.of(context)!.date),
-                    maxLength: 10,
-                    controller: TextEditingController()
-                      ..text = selectedDate,
+        child: Expanded(
+
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                DropDownList(
+                    items: spaceTypes,
+                    titleText: AppLocalizations.of(context)!.typeReuired,
+                    setCurrentState: (String value) => selectedSpaceType = value),
+                InkWell(
+                  onTap: () {
+                    _selectDate(context); // Call Function that has showDatePicker()
+                  },
+                  child: IgnorePointer(
+                    child: TextFormField(
+                      decoration: InputDecoration(labelText: AppLocalizations.of(context)!.date),
+                      maxLength: 10,
+                      controller: TextEditingController()
+                        ..text = selectedDate,
+                    ),
                   ),
                 ),
-              ),
-              DropDownList(
-                  items: times,
-                  titleText: AppLocalizations.of(context)!.from,
-                  setCurrentState: (String value) => timeFrom = value),
-              DropDownList(
-                  items: times,
-                  titleText: AppLocalizations.of(context)!.until,
-                  setCurrentState: (String value) => timeUntil = value),
+                DropDownList(
+                    items: times,
+                    titleText: AppLocalizations.of(context)!.from,
+                    setCurrentState: (String value) => timeFrom = value),
+                DropDownList(
+                    items: times,
+                    titleText: AppLocalizations.of(context)!.until,
+                    setCurrentState: (String value) => timeUntil = value),
 
-              TextFormField(
-                  decoration: InputDecoration(labelText: AppLocalizations.of(context)!.numberOfPpl),
-                  keyboardType: TextInputType.number,
-                  maxLength: 2,
-                  controller: TextEditingController(),
-                  inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))],
-              ), TextFormField(
-                  decoration: InputDecoration(labelText: AppLocalizations.of(context)!.location),
-                  maxLength: 20,
-              ),
-              ElevatedButton(
-                  onPressed: () {
-                    if (_dropdownFormKey.currentState!.validate()) {
-                      // print(selectedSpaceType);
-                      // print(selectedLikedCat);
-                      Navigator.pushNamed(context, '/meetingRooms');
-                      Provider.of<MeetingroomData>(context, listen: false).getMeetingRooms();
-                    }
-                  },
-                  child:  Text(AppLocalizations.of(context)!.submit))
-            ],
+                TextFormField(
+                    decoration: InputDecoration(labelText: AppLocalizations.of(context)!.numberOfPpl),
+                    keyboardType: TextInputType.number,
+                    maxLength: 2,
+                    controller: TextEditingController(),
+                    inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))],
+                ), TextFormField(
+                    decoration: InputDecoration(labelText: AppLocalizations.of(context)!.location),
+                    controller: locationController,
+                    maxLength: 20,
+                  validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return AppLocalizations.of(context)!.enterTheLocation;
+                      }
+                      return null;
+                    }),
+                ElevatedButton(
+                    onPressed: () {
+                      if (_dropdownFormKey.currentState!.validate()) {
+                        // print(selectedSpaceType);
+                        // print(selectedLikedCat);
+                        Navigator.pushNamed(context, '/meetingRooms');
+                        Provider.of<MeetingroomData>(context, listen: false).getMeetingRooms();
+                      }
+                    },
+                    child:  Text(AppLocalizations.of(context)!.submit))
+              ],
+            ),
           ),
         ));
   }
 
-  Future _selectDate() async {
+  Future _selectDate(BuildContext context) async {
     DateTime? picked = await showDatePicker(
         context: context,
-        initialDate: convertStringToDate(),
+        initialDate: convertStringToDate(context),
         firstDate: DateTime.now(),
         lastDate: DateTime.now().add(const Duration(days: 360)));
     if (picked != null) {
@@ -182,8 +171,8 @@ class MyCustomFormState extends State<SearchForm> {
     }
   }
 
-  DateTime convertStringToDate() {
-    return selectedDate == "Today"
+  DateTime convertStringToDate(BuildContext context) {
+    return selectedDate == AppLocalizations.of(context)!.today || selectedDate == ""
         ? DateTime.now()
         : DateFormat('yyyy/MM/dd').parse(selectedDate);
   }

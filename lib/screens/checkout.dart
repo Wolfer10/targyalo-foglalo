@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:targyalo_foglalo/Model/meetingRoom.dart';
 import 'package:targyalo_foglalo/components/meetingRoomDetails.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 import 'contacts/contact.dart';
 import 'document_picture.dart';
@@ -31,17 +33,19 @@ class _CheckoutState extends State<Checkout> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Checkout"),
+        title: Text(AppLocalizations.of(context)!.checkout),
         centerTitle: true,
         backgroundColor: const Color.fromARGB(255, 229, 37, 0),
       ),
       body: SingleChildScrollView(
         child: Column(children: <Widget>[
-          const Text("Your selected room:"),
-          const Text("Meeting room: for x people"),
+           Text(AppLocalizations.of(context)!.selectedRoom),
+          const SizedBox(height: 10,),
+           Text(AppLocalizations.of(context)!.forXPeople),
           Row(
             children: <Widget>[
               const Text("2022/01/23"),
+              const SizedBox(width: 10,),
               const Text("8:00 -> 9:30"),
               Text("${meetingRoom.price}"),
             ],
@@ -57,9 +61,9 @@ class _CheckoutState extends State<Checkout> {
          const DocumentPicture(),
 
           Column(children: [
-            const Text("Coffe & Tea"),
-            const Text("400Ft per serving"),
-            const Text("per person"),
+            Text(AppLocalizations.of(context)!.coffeeAndTea),
+            const Text("400Ft"),
+             Text(AppLocalizations.of(context)!.perMan),
             //Checkbox(onChanged: (_) => price + 400, value: null,),
             Text("$price")
           ])

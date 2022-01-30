@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:targyalo_foglalo/screens/take_document_pic.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class DocumentPicture extends StatefulWidget {
   const DocumentPicture({Key? key}) : super(key: key);
@@ -61,7 +63,7 @@ class _DocumentPictureState extends State<DocumentPicture> {
                 ),
               );
               setImage(newImage);
-            }, child: Text((image?.existsSync() != true) ? "Kérem adja meg a személyi dokumentumát" : "Másik dokumentum feltöltése"),
+            }, child: Text((image?.existsSync() != true) ? AppLocalizations.of(context)!.documentPicture : AppLocalizations.of(context)!.documentPictureOther ),
         ),
       ],
     );
