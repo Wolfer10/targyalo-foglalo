@@ -28,7 +28,7 @@ Future<void> main() async {
   Hive.registerAdapter(AddressAdapter());
   //Hive.registerAdapter(BookingAdapter());
   var box = await Hive.openBox<MeetingRoom>('MeetingRoomAdapter');
-  //box.clear();
+  box.deleteAll(box.keys);
   MEETING_ROOMS.forEach((meetingRoom) => box.add(meetingRoom));
 
   final cameras = await availableCameras();
